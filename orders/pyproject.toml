@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "orders"
+version = "0.1.0"
+description = ""
+authors = ["dfm88 <diegof.university@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.79.1"
+uvicorn = "^0.18.2"
+ipdb = "^0.13.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+flake8 = "^5.0.4"
+flake8-isort = "^4.2.0"
+flake8-builtins = "^1.5.3"
+autopep8 = "^1.7.0"
+pylint = "^2.14.5"
+bandit = "^1.7.4"
+black = "^22.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
