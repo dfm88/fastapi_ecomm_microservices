@@ -9,6 +9,9 @@ python = "^3.10"
 fastapi = "^0.79.1"
 uvicorn = "^0.18.2"
 ipdb = "^0.13.9"
+python-dotenv = "^0.20.0"
+alembic = "^1.8.1"
+psycopg2-binary = "^2.9.3"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
