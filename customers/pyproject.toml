@@ -12,6 +12,9 @@ ipdb = "^0.13.9"
 python-dotenv = "^0.20.0"
 alembic = "^1.8.1"
 psycopg2-binary = "^2.9.3"
+passlib = {extras = ["bcrypt"], version = "^1.7.4"}
+python-jose = {extras = ["cryptography"], version = "^3.3.0"}
+pydantic = {extras = ["email"], version = "^1.9.2"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

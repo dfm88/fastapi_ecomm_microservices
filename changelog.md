@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Customer service
-- docker-compose for postgres
+- docker-compose for Postgres
 - Customer and Address models
 - base FastaPI config file
 - Alembic for migrations
+- first costumer and address models and schemas
+- costumer create service and endpoint
+- password hashing and verifying
 
 ### Release notes
 - run alembic migrations 

@@ -1,11 +1,12 @@
-from email.policy import default
-from enum import unique
-from typing import Collection
+from typing import TYPE_CHECKING
 
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Integer, String
 from sqlalchemy.orm import relationship
 
 from customers.db.base_class import Base
+
+if TYPE_CHECKING:
+    from customers.models.address import Address  # noqa
 
 
 class Customer(Base):
@@ -16,12 +17,3 @@ class Customer(Base):
     is_active = Column(Boolean(), default=True)
     is_superuser = Column(Boolean(), default=False)
     addresses = relationship("Address", back_populates='customer')
-
-
-class Address(Base):
-    id = Column(Integer, primary_key=True, index=True)
-    street = Column(String(256), nullable=True)
-    city = Column(String(256), nullable=True)
-    postal_code = Column(String(16), nullable=True)
-    country = Column(String(256), nullable=True)
-    customer_id = Column(Integer, ForeignKey("customer.id"))
