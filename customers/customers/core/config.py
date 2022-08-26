@@ -11,6 +11,14 @@ load_dotenv()
 class BaseConfig(BaseSettings):
     API_V1_STR: str = os.environ.get('API_V1_STR')
     PROJECT_NAME: str = os.environ.get('PROJECT_NAME')
+
+    JWT_SECRET_KEY: str = os.environ.get('JWT_SECRET_KEY')
+    JWT_SECRET_KEY_REFRESH: str = os.environ.get('JWT_SECRET_KEY_REFRESH')
+
+    ALGORITHM = os.environ.get('ALGORITHM')
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
+    REFRESH_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 7  # 7 days
+
     BACKEND_CORS_ORIGINS: str | list[AnyHttpUrl] = os.environ.get(
         'BACKEND_CORS_ORIGINS', 'http://localhost:3000,http://localhost:8000'
     )

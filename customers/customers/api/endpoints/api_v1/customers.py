@@ -3,9 +3,9 @@ from typing import Any
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from customers.services.customer_service import CustomerService
 from customers.api.deps.db import get_db
 from customers.schemas.custumer_schema import CustomerCreate
+from customers.services.customer_service import CustomerService
 
 customer_router = APIRouter()
 
