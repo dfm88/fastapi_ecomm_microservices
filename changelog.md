@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Customer service
 - authentication, login and jwt secret, refresh and test endpoint
+- user update
 
 ## [v1.0.0] - 2022-08-26
 ### Customer service

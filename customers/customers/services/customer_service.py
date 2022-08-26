@@ -1,9 +1,10 @@
+from typing import Any
 from pydantic import EmailStr
 from sqlalchemy.orm import Session
 
 from customers.core.security import get_password_hash, verify_password
 from customers.models.customer import Customer
-from customers.schemas.custumer_schema import CustomerCreate
+from customers.schemas.custumer_schema import CustomerCreate, CustomerUpdate
 
 
 class CustomerService:
@@ -33,6 +34,26 @@ class CustomerService:
         ):
             return None
         return user
+
+    @staticmethod
+    def update(
+        db: Session, db_obj: Customer, obj_in: CustomerUpdate | dict[str, Any]
+    ) -> Customer:
+        if isinstance(obj_in, dict):
+            update_data = obj_in
+        else:
+            update_data = obj_in.dict(exclude_unset=True)
+        if update_data.get("password"):
+            hashed_password = get_password_hash(update_data["password"])
+            del update_data["password"]
+            update_data["hashed_password"] = hashed_password
+        for k, v in update_data.items():
+            if hasattr(db_obj, k):
+                setattr(db_obj, k, v)
+        db.add(db_obj)
+        db.commit()
+        db.refresh(db_obj)
+        return db_obj
 
     @staticmethod
     def get_by_email(db: Session, email: EmailStr) -> Customer | None:
