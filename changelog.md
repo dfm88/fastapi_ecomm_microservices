@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Customer service
+- first test setup
+- fix Import of pydantic BaseSetting during tests
+
 ## [v1.0.1] - 2022-08-26
 ### Customer service
 - authentication, login and jwt secret, refresh and test endpoint

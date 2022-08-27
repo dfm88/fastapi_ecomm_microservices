@@ -60,10 +60,15 @@ class ProductionConfig(BaseConfig):
 
 
 class TestingConfig(BaseConfig):
-    LOGGING_LEVEL = 'DEBUG'
-    # https://fastapi.tiangolo.com/advanced/testing-database/
-    SQLALCHEMY_DATABASE_URI: str = "sqlite:///./test.db"
+    # define new attributes with respect to BaseConfig
     DATABASE_CONNECT_DICT: dict = {"check_same_thread": False}
+    LOGGING_LEVEL = 'DEBUG'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # override attributes of BaseConfig
+        # https://fastapi.tiangolo.com/advanced/testing-database/
+        self.SQLALCHEMY_DATABASE_URI: str = "sqlite:///./test.db"
 
 
 @lru_cache()
@@ -71,7 +76,7 @@ def get_settings():
     config_cls_dict = {
         "development": DevelopmentConfig,
         "production": ProductionConfig,
-        "testing": TestingConfig
+        "testing": TestingConfig,
     }
 
     config_name = os.environ.get("FASTAPI_CONFIG", "development")
