@@ -6,19 +6,15 @@ from customers.services.customer_service import CustomerService
 from tests.conftest import settings
 
 
-def test_get_access_token(test_env, db: Session, client: TestClient) -> None:
-    customer_create = CustomerCreate(
-        email="example@maipl.com",
-        is_active=True,
-        password="test",
-    )
+def test_get_access_token(test_env, mock_customer: CustomerCreate, db: Session, client: TestClient) -> None:
+
     created_customer = CustomerService.create(
         db=db,
-        customer=customer_create
+        customer=mock_customer
     )
     login_data = {
         "username": created_customer.email,
-        "password": customer_create.password,
+        "password": mock_customer.password,
     }
     r = client.post(f"{settings.API_V1_STR}/auth/login", data=login_data)
     tokens = r.json()

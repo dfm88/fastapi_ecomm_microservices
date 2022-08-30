@@ -8,6 +8,8 @@ from customers.main import app
 from customers.api.deps.db import get_db
 from customers.db.base_class import Base
 
+from customers.schemas.custumer_schema import CustomerCreate
+
 from customers.core.config import TestingConfig
 
 settings = TestingConfig()
@@ -54,3 +56,12 @@ def client() -> Generator:
 @pytest.fixture
 def test_env(monkeypatch):
     monkeypatch.setenv("FASTAPI_CONFIG", "testing")
+
+
+@pytest.fixture()
+def mock_customer():
+    return CustomerCreate(
+        email="example@maipl.com",
+        is_active=True,
+        password="test",
+    )
